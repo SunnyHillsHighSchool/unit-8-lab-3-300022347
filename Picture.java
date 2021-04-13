@@ -367,7 +367,58 @@ public class Picture
   }
 
    ////////////////////// methods ///////////////////////////////////////
+  public void sepiaConvert()
+  {
+    //Create 2d array of pixels
+    Pixel[][]pixels = this.getPixels2D();
+    //Create pixel
+    Pixel current = null;
+    //Create current color point
+    double cR = 0; 
+    double cG = 0; 
+    double cB = 0; 
+    //Loop through rows
+    for(int r=0; r<pixels.length;r++)
+    {
+      //Loop through columns 
+      for(int c=0; c<pixels[0].length;c++)
+      {
+        //Assign Top to (row,column)
+        current=pixels[r][c];
+        //Set bottom to mirror point
+        cR=current.getRed();
+        cG=current.getGreen();
+        cB=current.getBlue();
 
+        if(cR==0&&cG==0&&cB==0)
+        {
+          cR++;
+          cG++;
+          cB++;
+        }
+        else;
+        //Set current pixel colors to sepia
+        int newRed = (int)(0.393*cR + 0.769*cG + 0.189*cB);
+        int newGreen = (int)(0.349*cR + 0.686*cG + 0.168*cG);
+        int newBlue = (int)(0.272*cR + 0.534*cG + 0.131*cB);
+        current.setRed(newRed);
+        current.setGreen(newGreen);
+        current.setBlue(newBlue);
+        if(current.getRed()>255)
+        {
+          current.setRed(255);
+        }
+        if(current.getGreen()>255)
+        {
+          current.setGreen(255);
+        }
+        if(current.getBlue()>255)
+        {
+          current.setBlue(255);
+        }
+      }
+    }
+  }
    
 
 
